@@ -37,8 +37,8 @@ public class MyOwnArray {
 		currentLength++; // Increase value of currentLength by 1
 	}
 
+	// insert new element at a given index
 	public void insert(int index, String text) {
-		// capacity = 8;
 		currentLength++;
 		String[] temp = new String[currentLength];
 
@@ -68,11 +68,13 @@ public class MyOwnArray {
 			System.out.println("Index out of bound no change will occur");
 	}
 
+	// remove last element
 	public void pop() {
 		if (currentLength > 0)
 			currentLength--;
 	}
 
+	// delete element at the given index
 	public void delete(int index) {
 		if (index > 0 && index < currentLength) {
 			if (index == currentLength - 1)
@@ -85,10 +87,12 @@ public class MyOwnArray {
 			System.out.println("Index out of bound no change will occur");
 	}
 
+	// returns the length of array{Number of elements stored in the array}
 	public int length() {
 		return currentLength;
 	}
 
+	// prints all data inside of an array
 	public void printArray() {
 		System.out.print("\n[");
 		for (int i = 0; i < currentLength; i++) {
