@@ -12,11 +12,11 @@ public class MyOwnArray {
 	}
 
 	// get(index) method returns the element of array at the given index
-	public String get(int index) {
+	public void get(int index) {
 		if (index > -1 && index < currentLength) {
-			return this.array[index];
+			System.out.println("[" + array[index] + "]");
 		} else
-			return "Index out of bound";
+			System.out.println("Index out of bound");
 	}
 
 	// push() method adds an element at the end
@@ -37,25 +37,27 @@ public class MyOwnArray {
 		currentLength++; // Increase value of currentLength by 1
 	}
 
-//	public void insert(int index, String text) {
-//		String[] temp = new String[array.length];
-//		for (int i = 0; i < array.length; i++) {
-//			if (i < index)
-//				temp[i] = array[i];
-//			else if (i == index)
-//				temp[i] = text;
-//			else
-//				temp[i] = array[i - 1];
+	public void insert(int index, String text) {
+		// capacity = 8;
+		currentLength++;
+		String[] temp = new String[currentLength];
+
+//		for (int i = currentLength; i > index; i--) {
+//			temp[i] = array[i - 1];
 //		}
-//
+//		temp[index] = text;
 //		array = temp;
-//		currentLength++;
-//		capacity = currentLength * 2;
-////		array[index] = text;
-////		for (int i = index + 1; i < array.length; i++) {
-////			array[i] = temp[i];
-////		}
-//	}
+
+		for (int i = 0; i < currentLength; i++) {
+			if (i < index)
+				temp[i] = array[i];
+			else if (i == index)
+				temp[i] = text;
+			else
+				temp[i] = array[i - 1];
+		}
+		array = temp;
+	}
 
 	// replace(index,value) replaces value at given index with the newly entered
 	// value
@@ -63,6 +65,37 @@ public class MyOwnArray {
 		if (index > -1 && index < currentLength) {
 			array[index] = text;
 		} else
-			System.out.println("Index out of bound");
+			System.out.println("Index out of bound no change will occur");
+	}
+
+	public void pop() {
+		if (currentLength > 0)
+			currentLength--;
+	}
+
+	public void delete(int index) {
+		if (index > 0 && index < currentLength) {
+			if (index == currentLength - 1)
+				pop();
+			else
+				for (int i = index; i < currentLength; i++)
+					array[i] = array[i + 1];
+			currentLength--;
+		} else
+			System.out.println("Index out of bound no change will occur");
+	}
+
+	public int length() {
+		return currentLength;
+	}
+
+	public void printArray() {
+		System.out.print("\n[");
+		for (int i = 0; i < currentLength; i++) {
+			if (i == currentLength - 1)
+				System.out.print(array[i] + "]\n");
+			else
+				System.out.print(array[i] + ", ");
+		}
 	}
 }
