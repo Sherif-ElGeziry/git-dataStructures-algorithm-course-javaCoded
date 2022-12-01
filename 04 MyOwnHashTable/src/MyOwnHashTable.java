@@ -1,10 +1,8 @@
 
 import java.util.ArrayList;
 
-import javax.xml.crypto.dsig.keyinfo.KeyValue;
-
 public class MyOwnHashTable {
-	ArrayList<KeyValue>[] data;
+	ArrayList<KeyVal>[] data;
 	int currentLength;
 
 	public MyOwnHashTable(int size) {
@@ -23,24 +21,37 @@ public class MyOwnHashTable {
 	public void set(String key, int value) {
 		int address = _hash(key);
 		if (data[address] == null) {
-			ArrayList<KeyValue> arrayAtAddress = new ArrayList<>();
+			ArrayList<KeyVal> arrayAtAddress = new ArrayList<>();
 			data[address] = arrayAtAddress;
 			currentLength++;
 		}
-		KeyValue pair = new KeyValue(key, value);
+		KeyVal pair = new KeyVal(key, value);
 		data[address].add(pair);
 	}
 
-//	public Integer get(String key) {
-//		int address = _hash(key);
-//		ArrayList<KeyValue> bucket = data[address];
-//		if (bucket != null) {
-//			for (KeyValue keyValue : bucket) {
-//				if (keyValue.getKey().equals(key)) {
-//					return keyValue.getValue();
-//				}
-//			}
-//		}
-//		return null; // return null when key does not exist.
-//	}
+	public Integer get(String key) {
+		int address = _hash(key);
+		ArrayList<KeyVal> bucket = data[address];
+		if (bucket != null) {
+			for (KeyVal KeyVal : bucket) {
+				if (KeyVal.getKey().equals(key)) {
+					return KeyVal.getValue();
+				}
+			}
+		}
+		return null; // return null when key does not exist.
+	}
+
+	public String[] keys() {
+		ArrayList<KeyVal>[] bucket = data;
+		String[] keysArray = new String[currentLength];
+		int count = 0;
+		for (ArrayList<KeyVal> keyValues : bucket) {
+			if (keyValues != null) {
+				keysArray[count] = keyValues.get(0).getKey();
+				count++;
+			}
+		}
+		return keysArray;
+	}
 }
