@@ -1,4 +1,3 @@
-
 public class MyBinarySearchTree {
 
 	private MyBinaryNode root;
@@ -29,5 +28,49 @@ public class MyBinarySearchTree {
 				currentNode = currentNode.getRight();
 			}
 		}
+	}
+
+	int count = 0;
+
+	public void printTree() {
+		count = 0;
+		printTree(root);
+	}
+
+	public void printTree(MyBinaryNode myNode) {
+		System.out.print(myNode.getValue());
+		System.out.println();
+		count++;
+
+		if (myNode.getLeft() != null) {
+			System.out.print("\t".repeat(Math.max(0, count)) + "Left: ");
+			printTree(myNode.getLeft());
+		}
+
+		if (myNode.getRight() != null) {
+			System.out.print("\t".repeat(Math.max(0, count)) + "Right: ");
+			printTree(myNode.getRight());
+		}
+
+		count--;
+	}
+
+	public MyBinaryNode lookUp(int value) {
+		if (root == null) {
+			return null;
+		}
+
+		MyBinaryNode currentNode = root;
+		while (currentNode != null) {
+			if (currentNode.getValue() > value) {
+				currentNode = currentNode.getLeft();
+			} else if (currentNode.getValue() < value) {
+				currentNode = currentNode.getRight();
+			} else {
+				return currentNode;
+			}
+		}
+
+		return null;
 	}
 }

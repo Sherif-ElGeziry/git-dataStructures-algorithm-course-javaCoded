@@ -11,6 +11,10 @@ public class Main {
 		tree.insert(6);
 		tree.insert(15);
 		tree.insert(170);
+		tree.printTree();
+
+		tree.printTree(tree.lookUp(20));
+
 	}
 
 }
