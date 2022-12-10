@@ -73,4 +73,49 @@ public class MyBinarySearchTree {
 
 		return null;
 	}
+
+	public void remove(int value) {
+		if (root == null) {
+			return;
+		}
+
+		MyBinaryNode nodeToRemove = root;
+		MyBinaryNode parentNode = null;
+		while (nodeToRemove.getValue() != value) {
+			parentNode = nodeToRemove;
+			if (value < nodeToRemove.getValue()) {
+				nodeToRemove = nodeToRemove.getLeft();
+			} else if (value > nodeToRemove.getValue()) {
+				nodeToRemove = nodeToRemove.getRight();
+			}
+		}
+
+		MyBinaryNode replacementNode = null;
+		if (nodeToRemove.getRight() != null) { // we have a right node
+			replacementNode = nodeToRemove.getRight();
+
+			if (replacementNode.getLeft() == null) { // we don't have a left node
+				replacementNode.setLeft(nodeToRemove.getLeft());
+			} else { // we have a left node, let's find the leftmost
+				MyBinaryNode replacementParentNode = nodeToRemove;
+				while (replacementNode.getLeft() != null) {
+					replacementParentNode = replacementNode;
+					replacementNode = replacementNode.getLeft();
+				}
+				replacementParentNode.setLeft(null);
+				replacementNode.setLeft(nodeToRemove.getLeft());
+				replacementNode.setRight(nodeToRemove.getRight());
+			}
+		} else if (nodeToRemove.getLeft() != null) { // we only have a left node
+			replacementNode = nodeToRemove.getLeft();
+		}
+
+		if (parentNode == null) {
+			root = replacementNode;
+		} else if (parentNode.getLeft() == nodeToRemove) {
+			parentNode.setLeft(replacementNode);
+		} else {
+			parentNode.setRight(replacementNode);
+		}
+	}
 }

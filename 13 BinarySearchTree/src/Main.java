@@ -13,7 +13,17 @@ public class Main {
 		tree.insert(170);
 		tree.printTree();
 
-		tree.printTree(tree.lookUp(20));
+//		tree.printTree(tree.lookUp(20));
+
+		tree.remove(20);
+		tree.remove(4);
+		tree.printTree();
+		tree.insert(20);
+		tree.insert(18);
+		tree.insert(10);
+		tree.printTree();
+		tree.remove(170);
+		tree.printTree();
 
 	}
 
