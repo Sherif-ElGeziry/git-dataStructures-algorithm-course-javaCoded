@@ -32,33 +32,9 @@ public class Trie {
 	}
 
 	public boolean delete(String word) {
-//		MyNode current = root;
-//		MyNode deleteAfter = root;
-//		char ch1 = word.charAt(0); // char '\0' = null
-//
-//		for (int i = 0; i < word.length(); i++) {
-//			char ch = word.charAt(i);
-//			if (current.children.containsKey(ch)) {
-//				current = current.children.get(ch);
-//				if (current.children.size() > 1) {
-//					deleteAfter = current;
-//					ch1 = word.charAt(i + 1);
-//				}
-//			} else {
-//				return false;
-//			}
-//		}
-//
-//		if (current.children.isEmpty()) {
-//			deleteAfter.children.remove(ch1);
-//			return true;
-//		}
-//
-//		return false;
-
 		MyNode current = root;
 		MyNode deleteAfter = root;
-		char ch1 = word.charAt(0); // char '\0' = NULL
+		char ch1 = word.charAt(0); // char '\0' = null
 
 		for (int i = 0; i < word.length(); i++) {
 			char ch = word.charAt(i);
@@ -73,11 +49,15 @@ public class Trie {
 			}
 		}
 
+		// set the word to false to delete it from the trie ut leave the continuing
+		// words true
+		current.isWord = false;
+
 		if (current.children.isEmpty()) {
 			deleteAfter.children.remove(ch1);
 			return true;
 		}
+
 		return false;
 	}
-
 }

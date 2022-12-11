@@ -6,9 +6,13 @@ public class Main {
 		trie.insert("heating");
 		trie.insert("heat");
 
+		System.out.println(trie.findWord("heat"));
 		System.out.println(trie.root.children.get('h').children.get('e').children);
+		System.out.println();
+
 		System.out.println(trie.delete("heat"));
 		System.out.println(trie.findWord("heat"));
+		System.out.println(trie.findWord("heating"));
 		System.out.println(trie.root.children.get('h').children.get('e').children);
 	}
 
